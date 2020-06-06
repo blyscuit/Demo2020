@@ -7,7 +7,19 @@
 //
 
 import UIKit
+import ObjectMapper
 
-class ListModel: NSObject {
-
+class ListModel: Mappable {
+    var title: String?
+    var url: String?
+    var thumbnailUrl: String?
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        title <- map["title"]
+        url <- map["url"]
+        thumbnailUrl <- map["thumbnailUrl"]
+    }
 }

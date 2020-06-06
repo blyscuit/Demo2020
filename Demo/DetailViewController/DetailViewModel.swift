@@ -9,5 +9,6 @@
 import UIKit
 
 class DetailViewModel: NSObject {
-
+    var model: DynamicValue<ListModel?> = DynamicValue(nil)
+    var networkState: DynamicValue<NetworkState> = DynamicValue(.none)
 }

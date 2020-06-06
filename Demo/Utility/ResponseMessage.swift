@@ -25,11 +25,6 @@ class BasicData: Mappable {
     
     func checkForNetworkState() {
         
-        if response_code == FREEZE_APP_ERROR_CODE {
-            NotificationCenter.default.post(name: .AppStatus, object: AppStatusType.freezeApp)
-            return
-        }
-        
         if !(200...299 ~= response_code) {
             networkState = NetworkState.errorFromCode(errorCode: response_code, errorMessage: response_msg)
         } else {
@@ -38,11 +33,6 @@ class BasicData: Mappable {
     }
     
     func checkForArrayNetworkState(data: [Mappable]) {
-        
-        if response_code == FREEZE_APP_ERROR_CODE {
-            NotificationCenter.default.post(name: .AppStatus, object: AppStatusType.freezeApp)
-            return
-        }
         
         if !(200...299 ~= response_code) {
             networkState = NetworkState.errorFromCode(errorCode: response_code, errorMessage: response_msg)
@@ -109,27 +99,6 @@ class ResponseArrayData<T: Mappable>: BasicData {
     }
 }
 
-class ResponseArrayPagination<T: Mappable>: BasicData {
-    
-    var pagination: PageUtility!
-    var lists: [T]!
-    
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        
-        lists <- map["result.lists"]
-        pagination <- map["result.pagination"]
-        checkForNetworkState()
-    }
-    
-    override func checkForNetworkState() {
-        if let data = lists {
-            checkForArrayNetworkState(data: data)
-        } else {
-            super.checkForNetworkState()
-        }
-    }
-}
 
 
 let TOKEN_EXPIRED_NOTIFICATION = "TOKEN_EXPIRED_NOTIFICATION"

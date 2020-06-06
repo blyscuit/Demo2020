@@ -8,6 +8,7 @@
 
 import UIKit
 
-class DetailImageViewController: NSObject {
-
+class DetailImageViewController: BaseViewController {
+    @IBOutlet weak var mainImageView: UIImageView!
+    static let id = "DetailImageViewController"
 }

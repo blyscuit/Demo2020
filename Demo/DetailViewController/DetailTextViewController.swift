@@ -8,6 +8,15 @@
 
 import UIKit
 
-class DetailTextViewController: NSObject {
+class DetailTextViewController: SlideChildViewController {
+    @IBOutlet weak var titleLabel: UILabel!
+    static let id = "DetailTextViewController"
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .grayBDB
+        view.clipsToBounds = false
+        view.layer.cornerRadius = 10
+        view.addDropShadow(offSetX: 0, offSetY: -4)
+    }
 }

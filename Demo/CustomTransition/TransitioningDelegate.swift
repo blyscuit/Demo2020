@@ -40,3 +40,8 @@ class TransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     }
     
 }
+
+
+@objc protocol CustomPresentationDelegate: AnyObject {
+    @objc func viewControllerDidDismissed(_ fromVC: UIViewController)
+}
